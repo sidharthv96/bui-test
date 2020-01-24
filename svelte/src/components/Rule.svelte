@@ -9,44 +9,6 @@
   export let rule;
   const expanded = rule.expanded || false;
   let shown = true;
-  // const events = [
-  //   {
-  //     id: "mercury.helios.ui55.event.chat-created",
-  //     name: "Chat Created"
-  //   },
-  //   {
-  //     id: "mercury.helios.ui55.event.chat-updated",
-  //     name: "Chat Updated"
-  //   }
-  // ];
-  // const events = [
-  //   {
-  //     id: "mercury.helios.ui55.event.chat-created",
-  //     name: "Incident Create",
-  //     fields: [
-  //       {
-  //         name: "severity",
-  //         type: "fixed",
-  //         values: ["Low", "Medium", "High"]
-  //       },
-  //       {
-  //         name: "productID",
-  //         type: "custom"
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     id: "mercury.helios.ui55.event.chat-updated",
-  //     name: "Incident Update",
-  //     fields: [
-  //       {
-  //         name: "status",
-  //         type: "fixed",
-  //         values: ["Resolved", "Escalated", "Unresolved"]
-  //       }
-  //     ]
-  //   }
-  // ];
   const events = [
     {
       id: "mercury.helios.ui55.event.chat-created",
@@ -79,7 +41,9 @@
   }
   let name = getName(rule.id);
 
-  function changeEvent() {}
+  function changeEvent() {
+    rule.filter = getNewFilter();
+  }
 </script>
 
 {#if shown}

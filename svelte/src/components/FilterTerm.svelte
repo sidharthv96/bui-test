@@ -7,6 +7,8 @@
   let selectedField;
   filterTerm.field = Object.keys(fields)[0];
   filterTerm = filterTerm;
+
+  console.log(filterTerm);
   $: fieldNames = Object.keys(fields);
   $: field = fields[filterTerm.field];
 
