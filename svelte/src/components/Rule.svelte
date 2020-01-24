@@ -5,6 +5,7 @@
   import { slide } from "svelte/transition";
   import { Button, Form, FormGroup, FormText, Input, Label } from "sveltestrap";
   import { getNewFilter } from "../util.js";
+  import { tick } from "svelte";
 
   export let rule;
   const expanded = rule.expanded || false;
@@ -27,6 +28,10 @@
       id: "mercury.helios.ui55.event.chat-updated",
       name: "Incident Update",
       fields: {
+        severity: {
+          type: "fixed",
+          values: ["Low", "Medium", "High"]
+        },
         status: {
           type: "fixed",
           values: ["Resolved", "Escalated", "Unresolved"]
@@ -41,7 +46,25 @@
   }
   let name = getName(rule.id);
 
-  function changeEvent() {
+  let warned = false;
+  warned = true;
+
+  function eventFocusHandler() {
+    console.log(rule.event_id);
+    if (!warned) {
+      window.confirm(
+        "This will remove uncompatible Fields from the Filter. Do you want to continue?"
+      );
+      warned = true;
+    }
+  }
+
+  async function changeEvent(e) {
+    console.log(`C: ${rule.event_id}`);
+  }
+
+  async function removeFilter() {
+    await tick();
     rule.filter = getNewFilter();
   }
 </script>
@@ -69,6 +92,7 @@
           name="eventID"
           bind:value="{rule.event_id}"
           on:change="{changeEvent}"
+          on:focus="{eventFocusHandler}"
         >
           {#each events as event (event.id)}
           <option value="{event.id}">
@@ -79,7 +103,11 @@
       </div>
       Filter
       <hr />
-      <Filter bind:filter="{rule.filter}" {fields}></Filter>
+      <Filter
+        bind:filter="{rule.filter}"
+        on:remove="{removeFilter}"
+        {fields}
+      ></Filter>
       <Button on:click="{rule.save()}"
         ><i class="fas fa-save"></i> Save Rule</Button
       >

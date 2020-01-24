@@ -50,14 +50,12 @@
       const remaining = filter.children.filter(
         child => child != event.detail.filter
       );
-      console.log(remaining);
-
       if (remaining.length > 1) {
         filter.children = remaining;
       } else {
         filter.children = [];
-        filter.filterTerm = remaining[0];
         filter.operator = noneOperator;
+        filter.filterTerm = remaining[0].filterTerm;
       }
     } else {
       dispatch("remove", {

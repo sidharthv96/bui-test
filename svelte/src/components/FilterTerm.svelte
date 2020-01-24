@@ -1,14 +1,44 @@
 <script>
   import { Comparator, Operator } from "helios-schemas";
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, beforeUpdate, afterUpdate } from "svelte";
   import { Button } from "sveltestrap";
+
   export let filterTerm;
   export let fields;
   let selectedField;
-  filterTerm.field = Object.keys(fields)[0];
   filterTerm = filterTerm;
 
   console.log(filterTerm);
+
+  function shouldResetValue() {
+    if (fields[filterTerm.field]) {
+      const values = fields[filterTerm.field].values;
+      if (values) {
+        if (filterTerm.value && values.includes(filterTerm.value)) {
+          return [false, null];
+        }
+        return [true, values[0]];
+      } else {
+        return [true && !filterTerm.value, ""];
+      }
+    }
+    return [true, ""];
+  }
+
+  afterUpdate(() => {
+    if (!filterTerm.field) {
+      filterTerm.field = Object.keys(fields)[0];
+    } else {
+      if (!fields[filterTerm.field]) {
+        remove();
+      }
+    }
+    const [shouldReset, value] = shouldResetValue();
+    if (shouldReset) {
+      filterTerm.value = value;
+    }
+  });
+
   $: fieldNames = Object.keys(fields);
   $: field = fields[filterTerm.field];
 
