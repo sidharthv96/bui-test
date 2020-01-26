@@ -1,5 +1,10 @@
 import { Helios } from "helios-client";
-import hri from "human-readable-ids";
+import {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals
+} from "unique-names-generator";
 
 export const getSDK = async () =>
   await Helios.init({
@@ -11,7 +16,9 @@ export const getSDK = async () =>
 export function getName(id) {
   let name = localStorage.getItem(id);
   if (!name) {
-    name = hri.hri.random();
+    name = uniqueNamesGenerator({
+      dictionaries: [adjectives, colors, animals]
+    }); // big_red_donkey
     setName(id, name);
   }
   return name;

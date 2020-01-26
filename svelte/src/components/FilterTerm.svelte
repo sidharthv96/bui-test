@@ -6,9 +6,6 @@
   export let filterTerm;
   export let fields;
   let selectedField;
-  filterTerm = filterTerm;
-
-  console.log(filterTerm);
 
   function shouldResetValue() {
     if (fields[filterTerm.field]) {
@@ -57,7 +54,7 @@
 </script>
 
 <div class="filterTerm">
-  <pre style="display: block;">{JSON.stringify(filterTerm, undefined, 2)}</pre>
+  <pre>{JSON.stringify(filterTerm, undefined, 2)}</pre>
 
   <select name="field" bind:value="{filterTerm.field}">
     {#each fieldNames as field}
@@ -84,5 +81,7 @@
     {/each}
   </select>
   {/if} {/if}
-  <Button on:click="{remove}"><i class="fas fa-trash-alt"></i></Button>
+  <Button on:click="{remove}"
+    ><i class="fas fa-trash-alt"></i>FilterTerm</Button
+  >
 </div>

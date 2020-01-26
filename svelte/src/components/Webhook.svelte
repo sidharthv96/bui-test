@@ -30,6 +30,10 @@
     }
   }
 
+  function saveWebhook(){
+    webhook.save().then(id=>webhook.id=id);
+  }
+
   let name = getName(webhook.id);
 </script>
 
@@ -84,7 +88,7 @@
       {#if webhook.id}
       <Rules {webhook}></Rules>
       {/if}
-      <Button on:click="{webhook.save()}">
+      <Button on:click="{saveWebhook}">
         <i class="fas fa-save"></i> Save Webhook
       </Button>
       <Button on:click="{webhook.remove().then(()=>shown=false)}">

@@ -114,8 +114,4 @@
     Delete Filter
   </Button>
   {/if}
-
-  <Button on:click="{addFilterTerm}" class="iBtn"
-    ><i class="fas fa-plus"></i
-  ></Button>
 </div>

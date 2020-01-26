@@ -113,5 +113,7 @@ pre {
 
 select {
   min-width: 12rem;
-  height: 2rem;
+  height: calc(1.5em + 0.75rem + 2px);
+  background-color: #fff;
+  border: 1px solid #ced4da;
 }

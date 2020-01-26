@@ -11,11 +11,13 @@
   (async () => {
     sdk = await getSDK();
     whPromise = (async () => {
+      let hooks;
       try {
-        return sdk.getWebhooks();
-      } catch {
-        return [];
+        hooks = await sdk.getWebhooks();
+      } catch (e) {
+        hooks = [];
       }
+      return hooks;
     })();
     webhooks = await whPromise;
   })();
@@ -23,6 +25,7 @@
   function addWebhook() {
     const webhook = sdk.createWebhook();
     webhook.expanded = true;
+    webhook.state = "enabled";
     webhooks = [...webhooks, webhook];
   }
 </script>
@@ -39,7 +42,7 @@
 <div class="center">
   <Spinner></Spinner>
 </div>
-{:then} {#each webhooks as webhook (webhook.id)}
+{:then} {#each webhooks as webhook}
 <Webhook bind:webhook="{webhook}"></Webhook>
 {/each}
 <Button on:click="{addWebhook}">

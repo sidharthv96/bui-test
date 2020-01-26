@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "helios-client": "0.0.202",
-    "human-readable-ids": "^1.0.4",
     "sirv-cli": "^0.4.4",
-    "sveltestrap": "^3.3.0"
+    "sveltestrap": "^3.3.0",
+    "unique-names-generator": "^4.1.1"
   }
 }
