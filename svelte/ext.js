@@ -3,9 +3,10 @@ ORACLE_SERVICE_CLOUD.extension_loader
   .then(extensionProvider => {
     extensionProvider.getGlobalContext().then(globalContext => {
       globalContext.registerAction("GetEventsList", () => {
-        return {
-          incidentCreate: {
-            label: "Incident Create",
+        return [
+          {
+            id: "mercury.helios.ui55.event.chat-created",
+            name: "Incident Create",
             fields: {
               severity: {
                 type: "fixed",
@@ -16,16 +17,21 @@ ORACLE_SERVICE_CLOUD.extension_loader
               }
             }
           },
-          incidentUpdate: {
-            label: "Incident Update",
+          {
+            id: "mercury.helios.ui55.event.chat-updated",
+            name: "Incident Update",
             fields: {
+              severity: {
+                type: "fixed",
+                values: ["Low", "Medium", "High"]
+              },
               status: {
                 type: "fixed",
                 values: ["Resolved", "Escalated", "Unresolved"]
               }
             }
           }
-        };
+        ];
       });
     });
     extensionProvider.registerUserInterfaceExtension(userInterfaceContext => {

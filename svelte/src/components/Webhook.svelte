@@ -12,7 +12,9 @@
     Row,
     Col
   } from "sveltestrap";
-
+import { getNotificationsContext } from "svelte-notifications";
+  const { addNotification } = getNotificationsContext();
+  
   export let webhook;
 
   const expanded = webhook.expanded || false;
@@ -30,8 +32,15 @@
     }
   }
 
-  function saveWebhook(){
-    webhook.save().then(id=>webhook.id=id);
+  async function saveWebhook(){
+    const id = await webhook.save();
+    addNotification({
+      text: "Webhook Saved",
+      position: "top-right",
+      removeAfter: 3000,
+      type: "success"
+    });
+    webhook.id=id;
   }
 
   let name = getName(webhook.id);
@@ -43,6 +52,10 @@
 <div transition:slide="{{duration: 200}}">
   <!-- <pre>{JSON.stringify(webhook, undefined, 2)}</pre> -->
   <Collapsible {expanded}>
+    <div slot="controls">
+      <Button on:click="{saveWebhook}"><i class="fas fa-save"></i></Button>
+      <Button on:click="{webhook.remove().then(()=>shown=false)}"><i class="fas fa-trash-alt"></i></Button>
+    </div>
     <div class="name" slot="head">
       <span>{name}</span>
     </div>
@@ -88,13 +101,7 @@
       {#if webhook.id}
       <Rules {webhook}></Rules>
       {/if}
-      <Button on:click="{saveWebhook}">
-        <i class="fas fa-save"></i> Save Webhook
-      </Button>
-      <Button on:click="{webhook.remove().then(()=>shown=false)}">
-        <i class="fas fa-trash-alt"></i>
-        Delete Webhook
-      </Button>
+      
     </div>
   </Collapsible>
 </div>

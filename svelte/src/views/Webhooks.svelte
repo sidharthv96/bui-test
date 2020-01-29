@@ -3,6 +3,7 @@
   import Webhook from "../components/Webhook.svelte";
   import { Button } from "sveltestrap";
   import { Spinner } from "sveltestrap";
+  import Collapsible from "../templates/Collapsible.svelte";
 
   let webhooks = [];
   let sdk;
@@ -42,11 +43,20 @@
 <div class="center">
   <Spinner></Spinner>
 </div>
-{:then} {#each webhooks as webhook}
-<Webhook bind:webhook="{webhook}"></Webhook>
-{/each}
-<Button on:click="{addWebhook}">
-  <i class="fas fa-plus"></i>
-  Add Webhook
-</Button>
+{:then}
+<Collapsible expanded="true">
+  <div slot="controls">
+    <Button on:click="{addWebhook}">
+      <i class="fas fa-plus"></i>
+    </Button>
+  </div>
+  <div slot="head">
+    Webhooks
+  </div>
+  <div slot="body">
+    {#each webhooks as webhook}
+    <Webhook bind:webhook="{webhook}"></Webhook>
+    {/each}
+  </div>
+</Collapsible>
 {/await}

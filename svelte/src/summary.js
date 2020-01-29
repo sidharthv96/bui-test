@@ -1,27 +1,30 @@
 export function summarizeRule(rule) {
-  return `Rule for ${rule.event_id} will fire when ${summarizeFilter(
+  return `Rule for ${rule.event_id} will fire when <br/>${summarizeFilter(
     rule.filter
-  )}
   )}`;
 }
 
 function summarizeFilter(filter) {
   if (filter.operator === "none") {
-    return summarizeFilterTerm(filter.filterTerm);
+    return `<div class="rItem">${summarizeFilterTerm(filter.filterTerm)}</div>`;
   }
-  return `( ${filter.children
+  return `<div class="rItem">( ${filter.children
     .map(summarizeFilter)
-    .join(` ${filter.operator} `)} )`;
+    .join(
+      `<div class="rItem"><div class="rItem">${filter.operator} </div></div>`
+    )} )</div>`;
 }
 
 function summarizeFilterTerm(term) {
-  return `( ${term.field} ${getSymbol(term.comparator)} ${term.value} )`;
+  return `<div class="rItem">${term.field} ${getSymbol(term.comparator)} ${
+    term.value
+  }</div>`;
 }
 
 function getSymbol(str) {
   const data = {
-    equals: "=",
-    notEquals: "!=",
+    equals: "is",
+    notEquals: "is not",
     and: "&&",
     or: "||"
   };

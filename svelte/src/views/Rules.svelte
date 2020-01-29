@@ -22,6 +22,9 @@
 
 <div class="rules">
   <Collapsible>
+    <div slot="controls">
+      <Button on:click="{addRule}"> <i class="fas fa-plus"></i></Button>
+    </div>
     <div slot="head">
       Rules
     </div>
@@ -29,9 +32,6 @@
       {#each rules as rule (rule.id)}
       <Rule {rule}></Rule>
       {/each}
-      <Button on:click="{addRule}">
-        <i class="fas fa-plus"></i> Add Rule</Button
-      >
     </div>
   </Collapsible>
 </div>

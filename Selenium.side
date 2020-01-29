@@ -1,0 +1,220 @@
+{
+  "id": "61b586b2-d832-46d1-84f3-c6332f527e21",
+  "version": "2.0",
+  "name": "Helios",
+  "url": "http://localhost:5001",
+  "tests": [{
+    "id": "e9971be0-adbc-45aa-8548-5c0b13c70e4b",
+    "name": "Value Change",
+    "commands": [{
+      "id": "2b846fe9-6858-4332-ab8f-14eb18f2bc89",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6df9fb8d-1db6-4b1c-8ba3-f23bd0e51db0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1253x1046",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8127f2ce-29d4-4692-bfcc-62f2fe3cfacb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.header",
+      "targets": [
+        ["css=.header", "css:finder"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cace8fd5-f534-45db-b8e4-61d25621c44b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.rules .header > div",
+      "targets": [
+        ["css=.rules .header > div", "css:finder"],
+        ["xpath=//div[2]/div/div/div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95228e9d-1ce9-4036-afb3-f7b8be0add54",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(1)",
+      "targets": [
+        ["css=.btn:nth-child(1)", "css:finder"],
+        ["xpath=//button[@id='']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,' Add Rule')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6723a115-2f39-4379-a88c-0853bc66872c",
+      "comment": "",
+      "command": "click",
+      "target": "name=value",
+      "targets": [
+        ["name=value", "name"],
+        ["css=select:nth-child(4)", "css:finder"],
+        ["xpath=//select[@name='value']", "xpath:attributes"],
+        ["xpath=//select[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0967b421-1fc2-4072-a83b-45e9c33205a3",
+      "comment": "",
+      "command": "select",
+      "target": "name=value",
+      "targets": [],
+      "value": "label=Medium"
+    }, {
+      "id": "2543f323-cb48-450c-ae87-cd8d1f71739c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.body > div > .row > .col:nth-child(2)",
+      "targets": [
+        ["css=.body > div > .row > .col:nth-child(2)", "css:finder"],
+        ["xpath=//div/div/div/div[2]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5352f553-28dd-46f3-853c-453e76dd04ff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.body > div > .row > .col:nth-child(2)",
+      "targets": [
+        ["css=.body > div > .row > .col:nth-child(2)", "css:finder"],
+        ["xpath=//div/div/div/div[2]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bdd953cb-d792-4318-a4be-ec2a54b5804b",
+      "comment": "",
+      "command": "click",
+      "target": "name=field",
+      "targets": [
+        ["name=field", "name"],
+        ["css=select:nth-child(2)", "css:finder"],
+        ["xpath=//select[@name='field']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/div/div/div[2]/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9b00b26-2e91-41dd-bd7c-706a76dad31a",
+      "comment": "",
+      "command": "select",
+      "target": "name=field",
+      "targets": [],
+      "value": "label=productID"
+    }, {
+      "id": "34ee5cbe-c404-490d-a190-e809fdf4dacd",
+      "comment": "",
+      "command": "click",
+      "target": "name=eventID",
+      "targets": [
+        ["name=eventID", "name"],
+        ["css=.form-group > select", "css:finder"],
+        ["xpath=//select[@name='eventID']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "719d4f4e-ec8b-4b5d-a42a-ccf49e631f80",
+      "comment": "",
+      "command": "select",
+      "target": "name=eventID",
+      "targets": [],
+      "value": "label=Incident Update"
+    }, {
+      "id": "1d58ea0b-b1a9-45f0-9899-0b90fc0b9433",
+      "comment": "",
+      "command": "click",
+      "target": "name=field",
+      "targets": [
+        ["name=field", "name"],
+        ["css=select:nth-child(2)", "css:finder"],
+        ["xpath=//select[@name='field']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/div/div/div[2]/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "12dde627-d818-495b-8baf-ab5e017fd7a3",
+      "comment": "",
+      "command": "click",
+      "target": "name=field",
+      "targets": [
+        ["name=field", "name"],
+        ["css=select:nth-child(2)", "css:finder"],
+        ["xpath=//select[@name='field']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/div/div/div[2]/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e06ab4cd-ca8d-4e7e-bcd9-509e7e964ecb",
+      "comment": "",
+      "command": "select",
+      "target": "name=field",
+      "targets": [],
+      "value": "label=status"
+    }, {
+      "id": "d34c7d90-7522-4fed-9dcc-297b3f608b6c",
+      "comment": "",
+      "command": "click",
+      "target": "name=value",
+      "targets": [
+        ["name=value", "name"],
+        ["css=select:nth-child(4)", "css:finder"],
+        ["xpath=//select[@name='value']", "xpath:attributes"],
+        ["xpath=//select[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "553023e6-ac82-4162-9f7c-5fdff23cad13",
+      "comment": "",
+      "command": "select",
+      "target": "name=value",
+      "targets": [],
+      "value": "label=Escalated"
+    }, {
+      "id": "f2383ecd-4a2f-4961-881d-0c0b8dbb72c1",
+      "comment": "",
+      "command": "click",
+      "target": "name=field",
+      "targets": [
+        ["name=field", "name"],
+        ["css=select:nth-child(2)", "css:finder"],
+        ["xpath=//select[@name='field']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/div/div/div[2]/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "06cbb52d-a0a3-4cd6-a17e-26bd34f2c5b0",
+      "comment": "",
+      "command": "select",
+      "target": "name=field",
+      "targets": [],
+      "value": "label=severity"
+    }, {
+      "id": "dab4f494-fea9-4f36-92ad-4d7d9c360b15",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.body > div > .row > .col:nth-child(2)",
+      "targets": [],
+      "value": "Rule for mercury.helios.ui55.event.incident-updated will fire when ( severity = Escalated ) )}"
+    }]
+  }],
+  "suites": [{
+    "id": "52bcc147-54e8-4e26-8ab5-9ac4cc4b0f82",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:5001/"],
+  "plugins": []
+}

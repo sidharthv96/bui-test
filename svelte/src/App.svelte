@@ -1,7 +1,10 @@
 <script>
+  import Notifications from "svelte-notifications";
   import Webhooks from "./views/Webhooks.svelte";
 </script>
 
 <main>
-  <Webhooks></Webhooks>
+  <Notifications>
+    <Webhooks></Webhooks>
+  </Notifications>
 </main>

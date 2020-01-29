@@ -14,11 +14,13 @@ export const getSDK = async () =>
   });
 
 export function getName(id) {
+  console.log(id);
   let name = localStorage.getItem(id);
-  if (!name) {
+  if (!name || !id) {
     name = uniqueNamesGenerator({
-      dictionaries: [adjectives, colors, animals]
-    }); // big_red_donkey
+      dictionaries: [adjectives, animals],
+      length: 2
+    }); // big_donkey
     setName(id, name);
   }
   return name;

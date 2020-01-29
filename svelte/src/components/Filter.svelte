@@ -45,8 +45,20 @@
       filter.operator === andOperator ? orOperator : andOperator;
   }
 
+  function removeThisFilter() {
+    const event = {
+      detail: {
+        filter
+      }
+    };
+    console.log(event);
+    removeFilter(event);
+  }
+
   function removeFilter(event) {
-    if (filter.operator !== noneOperator) {
+    console.log(event);
+
+    if (filter.operator !== noneOperator && filter != event.detail.filter) {
       const remaining = filter.children.filter(
         child => child != event.detail.filter
       );
@@ -79,6 +91,11 @@
     border-color: #afa;
     border-width: 2px;
   }
+
+  .button {
+    display: contents;
+    margin-top: 0.5rem;
+  }
 </style>
 
 <div
@@ -96,7 +113,6 @@
   ></FilterTerm>
   {:else}
   <Button on:click="{changeOperator}" block>{filter.operator}</Button>
-
   <div>
     {#each filter.children as childFilter (childFilter)}
     <div animate:flip="{{duration: 200}}">
@@ -105,13 +121,14 @@
         on:remove="{removeFilter}"
         {fields}
       ></svelte:self>
-      {filter.operator}
     </div>
     {/each}
   </div>
-  <Button>
+  <Button on:click="{removeThisFilter}">
     <i class="fas fa-trash-alt"></i>
-    Delete Filter
   </Button>
   {/if}
+  <div class="button">
+    <Button on:click="{addFilterTerm}"><i class="fas fa-plus"></i></Button>
+  </div>
 </div>

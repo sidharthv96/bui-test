@@ -7,13 +7,15 @@
   import { getNewFilter } from "../util.js";
   import { tick, afterUpdate } from "svelte";
   import { summarizeRule } from "../summary.js";
+  import { getNotificationsContext } from "svelte-notifications";
+  const { addNotification } = getNotificationsContext();
 
   export let rule;
   const expanded = rule.expanded || false;
   let shown = true;
   const events = [
     {
-      id: "mercury.helios.ui55.event.chat-created",
+      id: "mercury.helios.ui55.event.incident-created",
       name: "Incident Create",
       fields: {
         severity: {
@@ -26,7 +28,7 @@
       }
     },
     {
-      id: "mercury.helios.ui55.event.chat-updated",
+      id: "mercury.helios.ui55.event.incident-updated",
       name: "Incident Update",
       fields: {
         severity: {
@@ -42,10 +44,6 @@
   ];
 
   $: fields = events.filter(e => e.id === rule.event_id)[0].fields;
-  let ruleSummary;
-  afterUpdate(() => {
-    ruleSummary = summarizeRule(rule);
-  });
 
   if (!rule.event_id) {
     rule.event_id = events[0].id;
@@ -72,6 +70,17 @@
   async function removeFilter() {
     await tick();
     rule.filter = getNewFilter();
+    ruleSummary = summarizeRule(rule);
+  }
+
+  async function saveRule() {
+    await rule.save();
+    addNotification({
+      text: "Rule Saved",
+      position: "top-right",
+      removeAfter: 3000,
+      type: "success"
+    });
   }
 </script>
 
@@ -79,12 +88,18 @@
 
 <div transition:slide="{{duration: 200}}">
   <Collapsible {expanded}>
+    <div slot="controls">
+      <Button on:click="{saveRule}"><i class="fas fa-save"></i></Button>
+      <Button on:click="{rule.remove().then(()=>shown=false)}"
+        ><i class="fas fa-trash-alt"></i
+      ></Button>
+    </div>
     <div class="name" slot="head">
       <span>{name}</span>
     </div>
     <div slot="body">
       <div class="row">
-        <div class="col">
+        <div class="col-md-7">
           <div class="row">
             <div class="col">
               <FormGroup>
@@ -114,22 +129,28 @@
               </FormGroup>
             </div>
           </div>
-          Filter
-          <hr />
-          <Filter
-            bind:filter="{rule.filter}"
-            on:remove="{removeFilter}"
-            {fields}
-          ></Filter>
-          <Button on:click="{rule.save()}"
-            ><i class="fas fa-save"></i> Save Rule</Button
-          >
-          <Button on:click="{rule.remove().then(()=>shown=false)}">
-            <i class="fas fa-trash-alt"></i> Delete Rule
-          </Button>
+          <Collapsible expanded="true">
+            <div slot="head">
+              Filter
+            </div>
+            <div slot="body">
+              <Filter
+                bind:filter="{rule.filter}"
+                on:remove="{removeFilter}"
+                {fields}
+              ></Filter>
+            </div>
+          </Collapsible>
         </div>
-        <div class="col">
-          {ruleSummary}
+        <div class="col-md-5">
+          <Collapsible expanded="true">
+            <div slot="head">
+              Summary
+            </div>
+            <div slot="body">
+              {@html summarizeRule(rule)}
+            </div>
+          </Collapsible>
           <!-- <pre style="display: block;">
 {JSON.stringify(rule, undefined, 2)}
 </pre> -->

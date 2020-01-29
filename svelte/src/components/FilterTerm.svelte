@@ -31,8 +31,11 @@
       }
     }
     const [shouldReset, value] = shouldResetValue();
+
     if (shouldReset) {
+      console.log([shouldReset, value]);
       filterTerm.value = value;
+      filterTerm = filterTerm;
     }
   });
 
@@ -52,6 +55,12 @@
     });
   }
 </script>
+
+<style>
+  .filterTerm {
+    display: contents;
+  }
+</style>
 
 <div class="filterTerm">
   <pre>{JSON.stringify(filterTerm, undefined, 2)}</pre>
@@ -81,7 +90,5 @@
     {/each}
   </select>
   {/if} {/if}
-  <Button on:click="{remove}"
-    ><i class="fas fa-trash-alt"></i>FilterTerm</Button
-  >
+  <Button on:click="{remove}"><i class="fas fa-trash-alt"></i></Button>
 </div>

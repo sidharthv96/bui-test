@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --cors --port 5001",
+    "start": "npm run proxy & sirv public --cors --port 5001",
     "proxy": "lcp --proxyUrl https://helios-stage-helios-ci.channels.ocs.oc-test.com --port 9999",
     "uiproxy": "lcp --proxyUrl https://helios-stage-helios-ci.channels.ocs.oc-test.com --port 9999"
   },
@@ -25,6 +25,7 @@
   "dependencies": {
     "helios-client": "0.0.202",
     "sirv-cli": "^0.4.4",
+    "svelte-notifications": "^0.9.9",
     "sveltestrap": "^3.3.0",
     "unique-names-generator": "^4.1.1"
   }
